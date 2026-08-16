@@ -1,0 +1,18 @@
+services:
+  web-app:
+    build: ./app
+    ports:
+      - "5000:5000"
+    networks:
+      - secure_net
+
+  security-scanner:
+    build: ./scanner
+    depends_on:
+      - web-app
+    networks:
+      - secure_net
+
+networks:
+  secure_net:
+    driver: bridge
