@@ -1,0 +1,11 @@
+# Python cahce
+__pycache__/
+*.pyc
+
+# Docker logs
+*.log
+
+# Environment
+.venv/
+venv/
+
