@@ -19,15 +19,12 @@ def login():
         username = request.form.get('username')
 
     # Vulnerable SQL quetry (SQL Injection)
-        query = f"SELECT * FROM users WHERE username = '{username}'"
+        query = f"SELECT * FROM users WHERE username = ?"
 
         try:
             cursor = db_conn.cursor()
-            cursor.execute(query)
-            user = cursor.fetchone()
-            if user:
-                return f"Успешный вход! Добро пожаловать, {user[1]}."
-            return "Неверный логин."
+            cursor.execute(query, (username,))
+            
 
         except Exception as e:
             return f"Ошибка базы данных: {str(e)}"
